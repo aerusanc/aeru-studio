@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import Footer from '../components/Footer'; // Import Footer
 import '../assets/styles.css'; // Pastikan jalur ini sesuai
+
+
 
 const products = [
   { id: 1, name: "Home Jersey 24/25", price: 500000, set: "New", category: "Sports" },
@@ -24,18 +27,28 @@ const products = [
   { id: 18, name: "Suits", price: 300000, set: "New", category: "Fashion" },
   { id: 19, name: "Jacket", price: 500000, set: "New", category: "Fashion" },
   { id: 20, name: "Dress ", price: 400000, set: "Best Seller", category: "Fashion" },
+  
 ];
+
+
 
 const sets = ["New", "Best Seller"];
 
 const ProductList = () => {
-  const [selectedSet, setSelectedSet] = useState(sets[0]);
+  const productsRef = useRef(null);
+  const [selectedSet, setSelectedSet] = useState("New");
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
   const productsPerSlide = 5;
 
   const filteredProducts = products.filter(product => product.set === selectedSet);
   const totalSlides = Math.ceil(filteredProducts.length / productsPerSlide);
+
+  const scrollToProducts = () => {
+    if (productsRef.current) {
+      productsRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const handleNextSlide = () => {
     if (currentSlideIndex < totalSlides - 1) {
@@ -49,25 +62,32 @@ const ProductList = () => {
     }
   };
 
+
   return (
     <div className="bg-gray-200">
+      <main className="ml-0">
       {/* Banner */}
       <div className="mb-8 overflow-hidden p-0">
         <img
           src={`${process.env.PUBLIC_URL}/assets/banner.jpg`}
           alt="Banner"
-          className="w-full h-auto md:h-[720px] object-cover"
+          className="w-full h-auto md:h-[800px] object-cover"
         />
         <div className="mb-8 p-4 bg-blue-100 text-center relative">
           <h2 className="text-3xl font-bold mb-4">Check Out Our Latest Collection!</h2>
           <p className="text-lg mb-4">Explore the newest arrivals in sports and fashion.</p>
-          <Link to="/products" className="inline-block bg-black text-white py-2 px-4 rounded-md text-lg">
-            Shop Now
-          </Link>
+          <Link 
+        to="#" // gunakan "#" agar tidak melakukan navigasi
+        onClick={scrollToProducts} // memanggil fungsi scroll
+        className="inline-block bg-black text-white py-2 px-4 rounded-md text-lg"
+      >
+        Shop Now
+      </Link>
         </div>
       </div>
 
-      <div className="pl-4 md:pl-8">
+      <div ref={productsRef} className="container mx-auto px-4">
+      <h1 className="text-3xl font-bold text-center mb-8">Our Products</h1>
         <div className="mb-8">
           <div className="flex justify-between items-center mb-4">
             <div className="text-2xl font-bold">
@@ -168,7 +188,10 @@ const ProductList = () => {
           </div>
         </div>
       </div>
+    </main>
+      <Footer /> {/* Menggunakan komponen Footer */}
     </div>
+    
   );
 };
 

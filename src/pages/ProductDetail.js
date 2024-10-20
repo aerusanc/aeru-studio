@@ -1,10 +1,12 @@
 import React from 'react';
 import { FaStar, FaShoppingCart } from 'react-icons/fa';
+import Footer from '../components/Footer'; // Import Footer
 import '../assets/styles.css'; // Pastikan jalur ini sesuai
 
 const ProductDetail = () => {
     return (
-        <div className="p-4 md:p-8 flex justify-center">
+        <div className="bg-gray-200">
+        <main className="p-4 md:p-8 flex justify-center">
             <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 w-full max-w-6xl"> {/* Kontainer utama */}
                 {/* Card untuk Gambar Produk */}
                 <div className="flex-none w-full md:w-1/2 border rounded-lg p-4">
@@ -65,7 +67,9 @@ const ProductDetail = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
+        <Footer /> {/* Menggunakan komponen Footer */}
+    </div>
     );
 };
 
