@@ -82,7 +82,7 @@ const ProductList = () => {
 
 
   return (
-    <div className="bg-gray-200">
+    <div className="bg-white">
       <main className="ml-0">
       {/* Banner */}
       <div className="mb-8 overflow-hidden p-0">

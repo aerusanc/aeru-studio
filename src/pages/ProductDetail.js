@@ -10,7 +10,7 @@ const ProductImage = ({ src, alt }) => (
 );
 
 const ProductDetails = ({ name, reviews }) => (
-    <div className="w-full flex flex-col space-y-4 p-4">
+    <div className="w-full flex flex-col space-y-4 p-4 bg-white">
         <div className="bg-white p-2 sm:p-4 rounded-lg space-y-2 sm:space-y-4">
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold truncate">Best Seller</h2>
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold truncate">{name}</h2>

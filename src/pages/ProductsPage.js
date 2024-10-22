@@ -36,7 +36,7 @@ const ProductsPage = () => {
   }, [category]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-200">
+    <div className="flex flex-col min-h-screen bg-white">
       <main className="flex-grow container mx-auto px-4 py-8">
         <h1 className="text-2xl md:text-3xl font-bold mb-3 mt-14 capitalize px-4 text-left">{category} Products</h1>
         <h1 className="text-lg md:text-2xl mb-4 capitalize leading-relaxed px-4 text-justify">
