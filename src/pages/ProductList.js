@@ -43,7 +43,7 @@ const ProductList = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setProductsPerSlide(2); // 1 produk per slide di layar mobile
+        setProductsPerSlide(1); // 1 produk per slide di layar mobile
       } else {
         setProductsPerSlide(5); // 3 produk per slide di layar desktop
       }
