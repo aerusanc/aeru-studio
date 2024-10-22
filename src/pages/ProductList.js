@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import Footer from '../components/Footer'; // Import Footer
@@ -35,11 +35,29 @@ const products = [
 const sets = ["New", "Best Seller"];
 
 const ProductList = () => {
+  const [productsPerSlide, setProductsPerSlide] = useState(3);
   const productsRef = useRef(null);
   const [selectedSet, setSelectedSet] = useState("New");
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
-  const productsPerSlide = 5;
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setProductsPerSlide(2); // 1 produk per slide di layar mobile
+      } else {
+        setProductsPerSlide(5); // 3 produk per slide di layar desktop
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    
+    // Set initial value
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const filteredProducts = products.filter(product => product.set === selectedSet);
   const totalSlides = Math.ceil(filteredProducts.length / productsPerSlide);
@@ -89,7 +107,7 @@ const ProductList = () => {
       <div ref={productsRef} className="container mx-auto px-4">
       <h1 className="text-3xl font-bold text-center mb-8">Our Products</h1>
         <div className="mb-8">
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex flex-col md:flex-row mt-4 space-x-0 md:space-x- space-y-6 md:space-y-0">
             <div className="text-2xl font-bold">
               {sets.map((set) => (
                 <button
@@ -106,35 +124,47 @@ const ProductList = () => {
             </div>
           </div>
 
-          <div className="flex items-center">
-            <button onClick={handlePrevSlide} disabled={currentSlideIndex === 0}>
-              <FaArrowLeft className="text-xl mr-2" />
-            </button>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 justify-items-center">
-              {filteredProducts
-                .slice(currentSlideIndex * productsPerSlide, (currentSlideIndex + 1) * productsPerSlide)
-                .map((product) => (
-                  <Link key={product.id} to={`/product/${product.id}`}>
-                    <div className="bg-white rounded-lg shadow-lg p-2 relative w-[180px] md:w-[220px] lg:w-[300px]">
-                      <i className="far fa-heart absolute top-2 left-2 text-xl"></i>
-                      <img
-                        src={`${process.env.PUBLIC_URL}/assets/product.png`}
-                        alt={product.name}
-                        className="w-full h-[180px] md:h-[300px] object-cover mb-2"
-                      />
-                      <div className="text-left">
-                        <div className="text-lg font-bold">{product.name}</div>
-                        <div className="text-gray-600">Rp. {product.price.toLocaleString()}</div>
-                        <div className="text-gray-600">{product.category}</div>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+          <div className="relative flex items-center justify-center">
+  {/* Tombol Panah Kiri */}
+  <button 
+    onClick={handlePrevSlide} 
+    disabled={currentSlideIndex === 0} 
+    className="absolute left-0 z-10">
+    <FaArrowLeft className="text-xl" />
+  </button>
+  
+  {/* Grid Produk */}
+  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-items-center"> {/* Mengubah gap di sini */}
+    {filteredProducts
+      .slice(currentSlideIndex * productsPerSlide, (currentSlideIndex + 1) * productsPerSlide)
+      .map((product) => (
+        <Link key={product.id} to={`/product/${product.id}`}>
+          <div className="bg-white rounded-lg shadow-lg p-2 relative w-[180px] md:w-[220px] lg:w-[300px]">
+            <i className="far fa-heart absolute top-2 left-2 text-xl"></i>
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/product.png`}
+              alt={product.name}
+              className="w-full h-[180px] md:h-[300px] object-cover mb-2"
+            />
+            <div className="text-left">
+              <div className="text-lg font-bold">{product.name}</div>
+              <div className="text-gray-600">Rp. {product.price.toLocaleString()}</div>
+              <div className="text-gray-600">{product.category}</div>
             </div>
-            <button onClick={handleNextSlide} disabled={currentSlideIndex >= totalSlides - 1}>
-              <FaArrowRight className="text-xl ml-2" />
-            </button>
           </div>
+        </Link>
+      ))}
+  </div>
+  
+  {/* Tombol Panah Kanan */}
+  <button 
+    onClick={handleNextSlide} 
+    disabled={currentSlideIndex >= totalSlides - 1} 
+    className="absolute right-0 z-10">
+    <FaArrowRight className="text-xl" />
+  </button>
+</div>
+
         </div>
 
         {/* Special Products, Latest News, and Credits Section */}

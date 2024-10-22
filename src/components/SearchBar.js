@@ -42,8 +42,8 @@ const App = () => {
   if (!isOpen) return null; // Tidak merender komponen jika isOpen false
 
   return (
-    <div className={`relative bg-white p-4 shadow-lg z-50 w-full h-screen  flex items-start justify-center md:left-11 md:top-11 text-black`}>
-      <div className="bg-white bg-opacity-90 p-8 slide-in max-w-[800px] w-full rounded-lg shadow-lg">
+    <div className={`relative  p-4  z-50 w-full h-screen  flex items-start justify-center md:left-11 md:top-11 text-black`}>
+      <div className="  p-8 slide-in max-w-[800px] w-full rounded-lg shadow-lg">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-lg font-bold">Search</h1>
         </div>
@@ -81,21 +81,37 @@ const App = () => {
           </ul>
         </div>
         <div className="mt-8">
-          <h2 className="font-bold text-sm">RECENTLY VIEWED</h2>
-          <div className="mt-4">
+  <h2 className="font-bold text-sm ">RECENTLY VIEWED</h2>
+  <div className="flex  space-x-5 mt-5">
+    <img 
+      src={`${process.env.PUBLIC_URL}/assets/product.png`} 
+      alt="Recently viewed item" 
+      className="w-[150px]"
+    />
+    <img 
+      src={`${process.env.PUBLIC_URL}/assets/product.png`} 
+      alt="Recently viewed item" 
+      className="w-[150px]"
+    />
+  </div>
+  <div className="absolute top-[650px] left-11 font-bold text-sm">
+        <p>WINTER</p>
+        <p>DISCOVER THE COLLECTION</p>
+        <div className="mt-4">
             <img 
               src={`${process.env.PUBLIC_URL}/assets/product.png`} 
               alt="Recently viewed item" 
               className="w-[150px]"
             />
           </div>
-        </div>
       </div>
-      <div className="absolute bottom-8 left-8 text-white text-sm">
-        <p>WINTER</p>
-        <p>DISCOVER THE COLLECTION</p>
+</div>
+
       </div>
+
+      
     </div>
+
   );
 };
 

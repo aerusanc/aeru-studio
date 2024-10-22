@@ -34,7 +34,7 @@ function App() {
 
   return (
     <Router>
-      <div className="bg-gray-200">
+      <div className="bg-White">
         <Header toggleCart={toggleCart} /> {/* Pastikan Header menerima toggleCart */}
         <main className="p-0">
           <Routes>

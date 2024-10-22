@@ -5,28 +5,36 @@ const ProductCard = ({ product }) => {
 
   return (
     <div
-      className="relative w-[400px] h-[600px] bg-white  rounded-lg overflow-hidden m-10"
+      className="relative w-full aspect-[2/3] bg-white rounded-lg overflow-hidden shadow-md"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Gambar Produk */}
-      <div className="justify-center  h-auto m-10">
+      <div className="w-full h-full p-4">
         <img
-          src={`${process.env.PUBLIC_URL}/assets/product.png`} // Ganti dengan gambar produk yang sesuai
+          src={`${process.env.PUBLIC_URL}/assets/product.png`}
           alt={product.name}
-          className={`object-cover w-full h-full transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+          className={`object-cover w-full h-full transition-opacity duration-300 ${
+            isHovered ? 'opacity-0' : 'opacity-100'
+          }`}
         />
         <img
-          src={`${process.env.PUBLIC_URL}/assets/product.png`} // Ganti dengan gambar produk yang sesuai
+          src={`${process.env.PUBLIC_URL}/assets/product.png`}
           alt={product.name}
-          className={`absolute inset-0 object-cover w-full h-full transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 object-cover w-full h-full p-4 transition-opacity duration-300 ${
+            isHovered ? 'opacity-100' : 'opacity-0'
+          }`}
         />
       </div>
 
       {/* Nama Produk dan Harga */}
-      <div className={`absolute bottom-0 left-0 w-full text-black p-2 text-center transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-        <h3 className="text-2xl font-bold">{product.name}</h3>
-        <p className="text-2xl text-black">${product.price}</p>
+      <div
+        className={`absolute bottom-0 left-0 w-full bg-white bg-opacity-80 text-black p-2 text-center transition-opacity duration-300 ${
+          isHovered ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        <h3 className="text-lg md:text-xl font-bold truncate">{product.name}</h3>
+        <p className="text-lg md:text-xl text-black">${product.price}</p>
       </div>
     </div>
   );

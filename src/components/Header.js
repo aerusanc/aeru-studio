@@ -142,7 +142,7 @@ const Header = () => {
 
       {showCart && (
         <div className={`absolute top-100 right-0 bg-white p-8 shadow-lg z-50 ${showCart ? 'w-full md:w-1/2' : ''}`} style={{ maxHeight: '100vh', overflowY: 'auto' }}>
-          <button onClick={handleClose} className="absolute top-2 right-2 text-lg font-bold">
+          <button onClick={handleClose} className="absolute top-8 right-6 text-lg font-bold">
             X
           </button>
           <Cart onClose={handleClose} />
@@ -150,8 +150,8 @@ const Header = () => {
       )}
 
       {showSearchBar && (
-        <div className={`absolute top-100 right-0 bg-white p-8 shadow-lg z-50 ${showSearchBar ? 'w-full md:w-1/2' : ''}`} style={{ maxHeight: '100vh', overflowY: 'auto' }}>
-          <button onClick={handleClose} className="absolute top-2 right-2 text-lg font-bold">
+        <div className={`absolute top-100 right-0 bg-white p-8 shadow-lg z-50 ${showSearchBar ? ' md:w-1/2' : ''}`} style={{ maxHeight: '100vh', overflowY: 'auto' }}>
+          <button onClick={handleClose} className="absolute top-8 right-6 text-lg font-bold">
             X
           </button>
           <SearchBar onClose={handleClose} />
