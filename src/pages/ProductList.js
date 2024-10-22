@@ -134,7 +134,7 @@ const ProductList = () => {
   </button>
   
   {/* Grid Produk */}
-  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-items-center"> {/* Mengubah gap di sini */}
+  <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-items-center">
     {filteredProducts
       .slice(currentSlideIndex * productsPerSlide, (currentSlideIndex + 1) * productsPerSlide)
       .map((product) => (

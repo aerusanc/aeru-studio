@@ -4,6 +4,14 @@ body {
   font-family: 'Libre Baskerville', serif;
 }
 
+@media (max-width: 768px) {
+  .product-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 /* styles.css */
 
 .container {
