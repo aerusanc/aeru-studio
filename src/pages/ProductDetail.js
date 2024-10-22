@@ -28,8 +28,8 @@ const ProductDetails = ({ name, reviews }) => (
                     <button key={size} className="border rounded-full px-2 sm:px-3 py-1 text-xs sm:text-sm">{size}</button>
                 ))}
             </div>
-            <button className="bg-gray-300 px-4 py-2 rounded-full w-full text-xs sm:text-sm">SHOP NOW</button>
-            <button className="bg-gray-300 p-2 rounded-full w-full flex justify-center items-center text-xs sm:text-sm">
+            <button className=" px-4 py-2 border rounded-full w-full text-xs sm:text-sm">SHOP NOW</button>
+            <button className=" p-2 border rounded-full w-full flex justify-center items-center text-xs sm:text-sm">
                 <FaShoppingCart className="text-base sm:text-lg mr-2" />
                 Add to Cart
             </button>
@@ -70,7 +70,7 @@ const ProductDetail = () => {
     ];
 
     return (
-        <div className="bg-gray-200 min-h-screen">
+        <div className="bg-white min-h-screen">
             <main className=" mt-16 flex justify-center">
                 <div className="w-full max-w-6xl">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

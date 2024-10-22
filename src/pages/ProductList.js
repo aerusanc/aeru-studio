@@ -91,7 +91,7 @@ const ProductList = () => {
           alt="Banner"
           className="w-full h-auto md:h-[800px] object-cover"
         />
-        <div className="mb-8 p-4 bg-blue-100 text-center relative">
+        <div className="mb-8 p-4 bg-white text-center relative">
           <h2 className="text-3xl font-bold mb-4">Check Out Our Latest Collection!</h2>
           <p className="text-lg mb-4">Explore the newest arrivals in sports and fashion.</p>
           <Link 
