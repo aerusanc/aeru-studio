@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaUserCircle, FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import SearchBar from './SearchBar'; // Ganti dengan path yang sesuai jika diperlukan
-import Cart from '../pages/Cart'; // Ganti dengan path yang sesuai jika diperlukan
+import SearchBar from './SearchBar'; 
+import Cart from '../pages/Cart'; 
 
 const Header = () => {
   const [showDropdown, setShowDropdown] = useState({ shop: false, news: false });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false); 
   const [dropdownTimeout, setDropdownTimeout] = useState(null);
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const Header = () => {
   const handleDropdownMouseLeave = (type) => {
     const timeout = setTimeout(() => {
       setShowDropdown((prev) => ({ ...prev, [type]: false }));
-    }, 20); // Delay 300ms sebelum menghilangkan dropdown
+    }, 50);
     setDropdownTimeout(timeout);
   };
 
@@ -33,12 +34,16 @@ const Header = () => {
 
   const toggleSearchBar = () => {
     setShowSearchBar((prev) => !prev);
-    setShowCart(false); // Tutup cart saat search bar dibuka
+    setShowCart(false); 
   };
 
   const toggleCart = () => {
     setShowCart((prev) => !prev);
-    setShowSearchBar(false); // Tutup search bar saat cart dibuka
+    setShowSearchBar(false); 
+  };
+
+  const toggleProfileDropdown = () => {
+    setShowProfileDropdown((prev) => !prev);
   };
 
   const handleClose = () => {
@@ -60,10 +65,10 @@ const Header = () => {
             <div onMouseEnter={() => handleDropdownMouseEnter('shop')} onMouseLeave={() => handleDropdownMouseLeave('shop')}>
               <span className="cursor-pointer block">SHOP</span>
               {showDropdown.shop && (
-                <div className="mt-2 w-48 bg-gray-800 rounded shadow-lg">
-                  <Link to="/shop/mens" className="block px-4 py-2 hover:bg-gray-700">Men's</Link>
-                  <Link to="/shop/womens" className="block px-4 py-2 hover:bg-gray-700">Women's</Link>
-                  <Link to="/shop/accessories" className="block px-4 py-2 hover:bg-gray-700">Accessories</Link>
+                <div className="mt-2 w-48 text-black bg-white rounded shadow-lg">
+                  <Link to="/shop/mens" className="block px-4 py-2 hover:text-gray-500">Men's</Link>
+                  <Link to="/shop/womens" className="block px-4 py-2 hover:text-gray-500">Women's</Link>
+                  <Link to="/shop/accessories" className="block px-4 py-2 hover:text-gray-500">Accessories</Link>
                 </div>
               )}
             </div>
@@ -71,24 +76,24 @@ const Header = () => {
             <div onMouseEnter={() => handleDropdownMouseEnter('news')} onMouseLeave={() => handleDropdownMouseLeave('news')}>
               <span className="cursor-pointer block">NEWS</span>
               {showDropdown.news && (
-                <div className="mt-2 w-48 bg-gray-800 rounded shadow-lg">
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-700">Latest News</a>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-700">Upcoming Events</a>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-700">Promotions</a>
+                <div className="mt-2 w-48 text-black bg-white rounded shadow-lg">
+                  <a href="#" className="block px-4 py-2 hover:text-gray-500">Latest News</a>
+                  <a href="#" className="block px-4 py-2 hover:text-gray-500">Upcoming Events</a>
+                  <a href="#" className="block px-4 py-2 hover:text-gray-500">Promotions</a>
                 </div>
               )}
             </div>
           </nav>
         )}
 
-        <nav className="hidden md:flex flex-1 space-x-8 justify-start">
+        <nav className="hidden md:flex space-x-8 justify-start">
           <div className="relative inline-block" onMouseEnter={() => handleDropdownMouseEnter('shop')} onMouseLeave={() => handleDropdownMouseLeave('shop')}>
             <span className="text-white cursor-pointer">SHOP</span>
             {showDropdown.shop && (
-              <div className="absolute left-0 mt-2 w-48 bg-gray-800 rounded shadow-lg">
-                <Link to="/shop/mens" className="block px-4 py-2 hover:bg-gray-700">Men's</Link>
-                <Link to="/shop/womens" className="block px-4 py-2 hover:bg-gray-700">Women's</Link>
-                <Link to="/shop/accessories" className="block px-4 py-2 hover:bg-gray-700">Accessories</Link>
+              <div className="absolute left-0 mt-5 w-48 text-black bg-white rounded shadow-lg">
+                <Link to="/shop/mens" className="block px-4 py-2 hover:text-gray-500">Men's</Link>
+                <Link to="/shop/womens" className="block px-4 py-2 hover:text-gray-500">Women's</Link>
+                <Link to="/shop/accessories" className="block px-4 py-2 hover:text-gray-500">Accessories</Link>
               </div>
             )}
           </div>
@@ -96,10 +101,10 @@ const Header = () => {
           <div className="relative inline-block" onMouseEnter={() => handleDropdownMouseEnter('news')} onMouseLeave={() => handleDropdownMouseLeave('news')}>
             <span className="text-white cursor-pointer">NEWS</span>
             {showDropdown.news && (
-              <div className="absolute left-0 mt-2 w-48 bg-gray-800 rounded shadow-lg">
-                <a href="#" className="block px-4 py-2 hover:bg-gray-700">Latest News</a>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-700">Upcoming Events</a>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-700">Promotions</a>
+              <div className="absolute left-0 mt-5 w-48 text-black bg-white rounded shadow-lg">
+                <a href="#" className="block px-4 py-2 hover:text-gray-500">Latest News</a>
+                <a href="#" className="block px-4 py-2 hover:text-gray-500">Upcoming Events</a>
+                <a href="#" className="block px-4 py-2 hover:text-gray-500">Promotions</a>
               </div>
             )}
           </div>
@@ -122,26 +127,46 @@ const Header = () => {
           <button onClick={toggleCart} className="text-xl">
             <FaShoppingCart />
           </button>
-          <a href="#" className="text-white">
-            <FaUserCircle className="text-xl" />
-          </a>
+          <div
+            className="relative inline-block"
+            onMouseEnter={() => handleDropdownMouseEnter('profile')}
+            onMouseLeave={() => handleDropdownMouseLeave('profile')}
+          >
+            <FaUserCircle className="text-xl cursor-pointer" />
+            {showDropdown.profile && (
+              <div className="absolute right-0 mt-6 w-48 bg-white text-black rounded shadow-lg">
+                <Link to="/login" className="block px-4 py-2 hover:text-gray-500">Login</Link>
+                <Link to="/register" className="block px-4 py-2 hover:text-gray-500">Register</Link>
+              </div>
+            )}
+          </div>
         </div>
 
-        <div className="hidden md:flex items-center space-x-4 justify-end flex-1">
+        <div className="hidden md:flex items-center space-x-4 justify-end">
           <button onClick={toggleSearchBar} className="text-xl">
             <FaSearch />
           </button>
           <button onClick={toggleCart} className="text-xl">
             <FaShoppingCart />
           </button>
-          <a href="#" className="text-white">
-            <FaUserCircle className="text-xl" />
-          </a>
+          <div
+            className="relative inline-block"
+            onMouseEnter={() => handleDropdownMouseEnter('profile')}
+            onMouseLeave={() => handleDropdownMouseLeave('profile')}
+          >
+            <FaUserCircle className="text-xl cursor-pointer" />
+            {showDropdown.profile && (
+              <div className="absolute right-0 mt-6 w-48 bg-white text-black rounded shadow-lg">
+                <Link to="/login" className="block px-4 py-2 hover:text-gray-500">Login</Link>
+                <Link to="/register" className="block px-4 py-2 hover:text-gray-500">Register</Link>
+              </div>
+            )}
+          </div>
         </div>
       </header>
 
       {showCart && (
-        <div className={`absolute top-100 right-0 bg-white p-8 shadow-lg z-50 ${showCart ? 'w-full md:w-1/2' : ''}`} style={{ maxHeight: '100vh', overflowY: 'auto' }}>
+        <div className={`absolute top-16 right-0 bg-white p-8 shadow-lg z-50 ${showCart ? 'w-full md:w-1/2' : ''}`} style={{ maxHeight: '100vh', overflowY: 'auto' }}>
           <button onClick={handleClose} className="absolute top-8 right-6 text-lg font-bold">
             X
           </button>
@@ -150,7 +175,7 @@ const Header = () => {
       )}
 
       {showSearchBar && (
-        <div className={`absolute top-100 right-0 bg-white p-8 shadow-lg z-50 ${showSearchBar ? ' md:w-1/2' : ''}`} style={{ maxHeight: '100vh', overflowY: 'auto' }}>
+        <div className={`absolute top-16 right-0 bg-white p-8 shadow-lg z-50 ${showSearchBar ? 'md:w-1/2' : ''}`} style={{ maxHeight: '100vh', overflowY: 'auto' }}>
           <button onClick={handleClose} className="absolute top-8 right-6 text-lg font-bold">
             X
           </button>

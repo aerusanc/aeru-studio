@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import '../assets/styles.css'; // Pastikan Anda membuat file ini untuk gaya kustom
+import '../assets/styles.css'; // Make sure this file contains your custom styles
 
 const App = () => {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const [isOpen, setIsOpen] = useState(true); // State untuk mengontrol tampilan komponen
+  const [isOpen, setIsOpen] = useState(true); // State to control component visibility
 
   const handleInputChange = (e) => {
     const value = e.target.value;
     setQuery(value);
 
-    // Contoh saran pencarian
+    // Example search suggestions
     const sampleSuggestions = [
       'LE 5 À 7',
       'LOULOU',
@@ -19,7 +19,7 @@ const App = () => {
       'ICARE',
     ];
 
-    // Filter saran berdasarkan input
+    // Filter suggestions based on input
     if (value) {
       const filteredSuggestions = sampleSuggestions.filter(item =>
         item.toLowerCase().includes(value.toLowerCase())
@@ -32,18 +32,18 @@ const App = () => {
 
   const handleSuggestionClick = (suggestion) => {
     setQuery(suggestion);
-    setSuggestions([]); // Kosongkan saran setelah memilih
+    setSuggestions([]); // Clear suggestions after selection
   };
 
   const handleClose = () => {
-    setIsOpen(false); // Mengubah state untuk menutup komponen
+    setIsOpen(false); // Change state to close component
   };
 
-  if (!isOpen) return null; // Tidak merender komponen jika isOpen false
+  if (!isOpen) return null; // Don't render if `isOpen` is false
 
   return (
-    <div className={`relative  p-4  z-50 w-full h-screen  flex items-start justify-center md:left-11 md:top-11 text-black`}>
-      <div className="  p-8 slide-in max-w-[800px] w-full rounded-lg shadow-lg">
+    <div className="relative p-4 z-50 w-full h-screen flex items-start justify-center md:left-11 md:top-11 text-black">
+      <div className="p-8 slide-in max-w-[800px] w-full rounded-lg shadow-lg bg-white">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-lg font-bold">Search</h1>
         </div>
@@ -55,13 +55,13 @@ const App = () => {
             placeholder="SEARCH" 
             className="w-full border-b border-black text-sm focus:outline-none"
           />
-          {/* Dropdown untuk saran */}
+          {/* Dropdown for suggestions */}
           {suggestions.length > 0 && (
-            <div className="dropdown">
+            <div className="dropdown absolute z-10 bg-white shadow-lg w-full mt-1">
               {suggestions.map((suggestion, index) => (
                 <div 
                   key={index} 
-                  className="dropdown-item"
+                  className="dropdown-item p-2 hover:bg-gray-200 cursor-pointer"
                   onClick={() => handleSuggestionClick(suggestion)}
                 >
                   {suggestion}
@@ -81,37 +81,33 @@ const App = () => {
           </ul>
         </div>
         <div className="mt-8">
-  <h2 className="font-bold text-sm ">RECENTLY VIEWED</h2>
-  <div className="flex  space-x-5 mt-5">
-    <img 
-      src={`${process.env.PUBLIC_URL}/assets/product.png`} 
-      alt="Recently viewed item" 
-      className="w-[150px]"
-    />
-    <img 
-      src={`${process.env.PUBLIC_URL}/assets/product.png`} 
-      alt="Recently viewed item" 
-      className="w-[150px]"
-    />
-  </div>
-  <div className="absolute top-[650px] left-11 font-bold text-sm">
-        <p>WINTER</p>
-        <p>DISCOVER THE COLLECTION</p>
-        <div className="mt-4">
+          <h2 className="font-bold text-sm">RECENTLY VIEWED</h2>
+          <div className="flex space-x-5 mt-5 overflow-x-auto">
             <img 
               src={`${process.env.PUBLIC_URL}/assets/product.png`} 
               alt="Recently viewed item" 
-              className="w-[150px]"
+              className="w-[150px] h-auto"
+            />
+            <img 
+              src={`${process.env.PUBLIC_URL}/assets/product.png`} 
+              alt="Recently viewed item" 
+              className="w-[150px] h-auto"
             />
           </div>
+        </div>
+        <div className="absolute top-[650px] left-11 font-bold text-sm">
+          <p>WINTER</p>
+          <p>DISCOVER THE COLLECTION</p>
+          <div className="mt-4">
+            <img 
+              src={`${process.env.PUBLIC_URL}/assets/product.png`} 
+              alt="Recently viewed item" 
+              className="w-[150px] h-auto"
+            />
+          </div>
+        </div>
       </div>
-</div>
-
-      </div>
-
-      
     </div>
-
   );
 };
 

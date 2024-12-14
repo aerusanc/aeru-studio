@@ -97,7 +97,7 @@ const ProductList = () => {
           <Link 
         to="#" // gunakan "#" agar tidak melakukan navigasi
         onClick={scrollToProducts} // memanggil fungsi scroll
-        className="inline-block bg-black text-white py-2 px-4 rounded-md text-lg"
+        className="inline-block bg-black text-white py-2 px-4 rounded-sm text-lg"
       >
         Shop Now
       </Link>

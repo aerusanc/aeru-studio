@@ -5,8 +5,20 @@ const Footer = () => {
   return (
     <footer className="bg-black text-white text-center py-4 mt-8">
       <div className="container mx-auto px-4">
-        <p className="text-sm md:text-base">© 2024 Aeru Studio.</p>
-        <p className="text-sm md:text-base">All Rights Reserved.</p>
+     
+      <p className="text-xs sm:text-sm md:text-base lg:text-lg">
+  ©2024 Aeru✧Studio.{' '}
+  
+</p>
+
+        <a 
+    href="https://www.instagram.com/aeru.studio/" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className="text-white hover:underline"
+  >
+    Follow us on Instagram
+  </a>
       </div>
     </footer>
   );
